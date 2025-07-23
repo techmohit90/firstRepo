@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                echo 'Cloning the repository...'
+                // Git auto-clone if you configure repo in Jenkins job
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+                sh 'chmod +x hello.sh'
+            }
+        }
+
+        stage('Run Script') {
+            steps {
+                echo 'Running the script...'
+                sh './hello.sh'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline finished successfully!'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+    }
+}
